@@ -17,8 +17,8 @@ const HowItWorks = () => {
     },
     {
       icon: CheckCircle,
-      title: "Get Expert Advice",
-      description: "Receive professional recommendations and step-by-step solutions",
+      title: "Get Instant AI Advice",
+      description: "Receive professional recommendations powered by expert knowledge - instantly",
       color: "text-purple-600"
     }
   ];
@@ -29,7 +29,7 @@ const HowItWorks = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">How FloorGuru Works</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Get professional flooring advice in three simple steps
+            Get instant AI-powered flooring advice in three simple steps
           </p>
         </div>
 

@@ -14,11 +14,11 @@ const Hero = () => {
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-                Expert Floor Advice
+                AI-Powered Floor Advice
                 <span className="text-primary"> Instantly</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Upload a photo of your flooring issue, ask your question, and get professional advice from certified flooring experts in minutes.
+                Upload a photo of your flooring issue, ask your question, and get instant professional advice powered by AI with expert knowledge.
               </p>
             </div>
             
@@ -28,7 +28,7 @@ const Hero = () => {
                 onClick={handleGetStarted}
                 className="group hover-scale"
               >
-                Get Started Today
+                Join Waitlist
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
               <Button variant="outline" size="lg" className="hover-scale">
@@ -39,15 +39,15 @@ const Hero = () => {
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
-                <span>Certified Experts</span>
+                <span>AI Expert Knowledge</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
-                <span>24/7 Support</span>
+                <span>Instant Responses</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
-                <span>Money Back Guarantee</span>
+                <span>Coming Soon</span>
               </div>
             </div>
           </div>
@@ -74,8 +74,8 @@ const Hero = () => {
                 <div className="flex items-center gap-4 p-4 bg-yellow-50 rounded-lg">
                   <CheckCircle className="h-8 w-8 text-yellow-600" />
                   <div>
-                    <h3 className="font-semibold">Get Expert Advice</h3>
-                    <p className="text-sm text-muted-foreground">Receive professional recommendations</p>
+                    <h3 className="font-semibold">Get Instant AI Advice</h3>
+                    <p className="text-sm text-muted-foreground">Receive expert recommendations instantly</p>
                   </div>
                 </div>
               </div>

@@ -8,64 +8,64 @@ const Pricing = () => {
   const [email, setEmail] = useState("");
   const { toast } = useToast();
 
-  const handleEarlyAccess = (plan: string) => {
+  const handleWaitlistSignup = (plan: string) => {
     if (!email) {
       toast({
         title: "Email Required",
-        description: "Please enter your email to get early access.",
+        description: "Please enter your email to join the waitlist.",
         variant: "destructive"
       });
       return;
     }
     
     toast({
-      title: "Success!",
-      description: `Thanks for your interest in the ${plan} plan! We'll notify you when we launch.`,
+      title: "Welcome to the Waitlist!",
+      description: `Thanks for your interest in the ${plan} plan! We'll notify you when FloorGuru launches.`,
     });
     
-    console.log(`Early access signup for ${plan} plan:`, email);
+    console.log(`Waitlist signup for ${plan} plan:`, email);
     setEmail("");
   };
 
   const plans = [
     {
-      name: "One-Time Consultation",
-      price: "$19",
-      description: "Perfect for single flooring questions",
+      name: "Single Question",
+      price: "$9",
+      description: "Perfect for one-off flooring questions",
       features: [
-        "Photo analysis",
-        "Expert consultation",
-        "Written recommendations",
-        "48-hour response",
+        "AI photo analysis",
+        "Instant expert advice", 
+        "Detailed recommendations",
+        "Product suggestions",
         "1 follow-up question"
       ],
       popular: false
     },
     {
       name: "Project Package",
-      price: "$49",
+      price: "$29",
       description: "Best for complete flooring projects",
       features: [
-        "Everything in One-Time",
-        "Priority 2-hour response",
-        "Unlimited follow-ups",
-        "Product recommendations",
+        "Everything in Single Question",
+        "Unlimited questions for 30 days",
         "Installation guidance",
-        "30-day support"
+        "Cost estimates",
+        "Priority support",
+        "Email summaries"
       ],
       popular: true
     },
     {
-      name: "Professional Plan",
-      price: "$199/mo",
-      description: "For contractors and property managers",
+      name: "Pro Plan",
+      price: "$99/mo",
+      description: "For contractors and professionals",
       features: [
-        "Unlimited consultations",
-        "1-hour response time",
-        "Direct expert phone calls",
+        "Unlimited AI consultations",
+        "Advanced analytics",
         "Custom reports",
         "Team access",
-        "Priority support"
+        "API access",
+        "White-label options"
       ],
       popular: false
     }
@@ -75,9 +75,9 @@ const Pricing = () => {
     <section id="pricing" className="py-20 bg-gray-50">
       <div className="container mx-auto max-w-6xl px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Coming Soon - Planned Pricing</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that works best for your needs
+            Join our waitlist to be the first to try FloorGuru when we launch
           </p>
         </div>
 
@@ -111,16 +111,16 @@ const Pricing = () => {
               <Button 
                 className="w-full" 
                 variant={plan.popular ? "default" : "outline"}
-                onClick={() => handleEarlyAccess(plan.name)}
+                onClick={() => handleWaitlistSignup(plan.name)}
               >
-                Get Early Access
+                Join Waitlist
               </Button>
             </div>
           ))}
         </div>
 
         <div className="bg-white rounded-xl p-8 max-w-md mx-auto text-center">
-          <h3 className="text-xl font-bold mb-4">Get Early Access</h3>
+          <h3 className="text-xl font-bold mb-4">Join the Waitlist</h3>
           <p className="text-muted-foreground mb-6">
             Be the first to know when FloorGuru launches. Early subscribers get 50% off their first consultation!
           </p>
@@ -132,8 +132,8 @@ const Pricing = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <Button onClick={() => handleEarlyAccess("Early Access")}>
-              Notify Me
+            <Button onClick={() => handleWaitlistSignup("Early Access")}>
+              Join Now
             </Button>
           </div>
         </div>
