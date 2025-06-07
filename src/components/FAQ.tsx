@@ -10,27 +10,35 @@ const FAQ = () => {
   const faqs = [
     {
       question: "How quickly will I get a response?",
-      answer: "Most consultations are answered within 2 hours during business hours. Our Project Package includes priority support with responses typically within 30 minutes."
+      answer: "Our AI provides instant responses! Depending on your plan, you'll get standard instant responses with the free plan, fast responses with Plus, or fastest priority responses with Pro - all delivered in seconds, not hours."
     },
     {
-      question: "What types of flooring issues can you help with?",
-      answer: "We help with all types of flooring including hardwood, laminate, tile, carpet, vinyl, and more. Common issues include damage assessment, installation questions, material selection, and maintenance advice."
+      question: "What types of flooring issues can the AI help with?",
+      answer: "Our AI is trained on expert knowledge for all types of flooring including hardwood, laminate, tile, carpet, vinyl, and more. It can help with damage assessment, installation questions, material selection, maintenance advice, and cost estimates."
     },
     {
-      question: "Are your experts really qualified?",
-      answer: "Yes! Our team includes licensed contractors, certified flooring installers, and industry professionals with 10+ years of experience. All experts are thoroughly vetted and continuously trained."
+      question: "How does the AI have expert knowledge?",
+      answer: "Our AI is trained on decades of professional flooring expertise, industry best practices, product specifications, and real-world solutions from certified contractors and flooring specialists. It combines this knowledge to provide instant, professional-grade advice."
     },
     {
-      question: "What if I'm not satisfied with the advice?",
-      answer: "We offer a 30-day money-back guarantee. If you're not completely satisfied with our consultation, we'll refund your payment in full, no questions asked."
+      question: "What if I'm not satisfied with the AI advice?",
+      answer: "We offer a 30-day money-back guarantee. If you're not completely satisfied with our AI-powered consultations, we'll refund your payment in full, no questions asked."
     },
     {
-      question: "Can I get help with DIY projects?",
-      answer: "Absolutely! We love helping DIY enthusiasts. We'll provide step-by-step guidance, tool recommendations, and tips to help you complete your project successfully."
+      question: "Can the AI help with DIY projects?",
+      answer: "Absolutely! Our AI excels at helping DIY enthusiasts. It provides step-by-step guidance, tool recommendations, safety tips, and troubleshooting advice to help you complete your flooring project successfully."
     },
     {
-      question: "Do you recommend specific products or brands?",
-      answer: "Yes, we provide unbiased product recommendations based on your specific needs, budget, and preferences. We're not affiliated with any manufacturers, so our advice is always objective."
+      question: "Does the AI recommend specific products or brands?",
+      answer: "Yes, our AI provides unbiased product recommendations based on your specific needs, budget, and preferences. The AI analyzes thousands of products and reviews to give you the best options for your situation."
+    },
+    {
+      question: "How accurate is the AI photo analysis?",
+      answer: "Our AI uses advanced computer vision trained specifically on flooring images. It can accurately identify flooring types, damage patterns, installation issues, and material characteristics from your photos to provide precise recommendations."
+    },
+    {
+      question: "What's the difference between response times?",
+      answer: "All plans get instant AI responses, but Plus and Pro plans get priority processing for faster analysis of complex images and questions, plus access to more advanced AI features and detailed reports."
     }
   ];
 
@@ -40,7 +48,7 @@ const FAQ = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
           <p className="text-xl text-muted-foreground">
-            Everything you need to know about FloorGuru
+            Everything you need to know about FloorGuru's AI-powered advice
           </p>
         </div>
 

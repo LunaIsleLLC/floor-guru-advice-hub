@@ -1,8 +1,16 @@
 
 import { Button } from "@/components/ui/button";
-import { Check, Star } from "lucide-react";
+import { Check, X, Star } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const Pricing = () => {
   const [email, setEmail] = useState("");
@@ -29,45 +37,58 @@ const Pricing = () => {
 
   const plans = [
     {
-      name: "Single Question",
-      price: "$9",
-      description: "Perfect for one-off flooring questions",
-      features: [
-        "AI photo analysis",
-        "Instant expert advice", 
-        "Detailed recommendations",
-        "Product suggestions",
-        "1 follow-up question"
-      ],
+      name: "Free \"Explorer\"",
+      price: "$0 / month",
       popular: false
     },
     {
-      name: "Project Package",
-      price: "$29",
-      description: "Best for complete flooring projects",
-      features: [
-        "Everything in Single Question",
-        "Unlimited questions for 30 days",
-        "Installation guidance",
-        "Cost estimates",
-        "Priority support",
-        "Email summaries"
-      ],
+      name: "Plus",
+      price: "$12 / month",
       popular: true
     },
     {
-      name: "Pro Plan",
-      price: "$99/mo",
-      description: "For contractors and professionals",
-      features: [
-        "Unlimited AI consultations",
-        "Advanced analytics",
-        "Custom reports",
-        "Team access",
-        "API access",
-        "White-label options"
-      ],
+      name: "Pro",
+      price: "$39 / month",
       popular: false
+    }
+  ];
+
+  const features = [
+    {
+      name: "AI Questions",
+      values: ["3 / month", "100 / month", "Unlimited"]
+    },
+    {
+      name: "Photo Uploads",
+      values: [true, true, true]
+    },
+    {
+      name: "Response Time",
+      values: ["Standard", "Fast", "Fastest + Priority"]
+    },
+    {
+      name: "Project History",
+      values: [false, true, true]
+    },
+    {
+      name: "PDF Report Export",
+      values: [false, true, true]
+    },
+    {
+      name: "White-Labeled Reports",
+      values: [false, false, true]
+    },
+    {
+      name: "Team Members",
+      values: [false, false, "Up to 5"]
+    },
+    {
+      name: "Early Access Features",
+      values: [false, false, true]
+    },
+    {
+      name: "Support",
+      values: ["Basic email", "Priority email", "Concierge onboarding"]
     }
   ];
 
@@ -81,48 +102,74 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {plans.map((plan, index) => (
-            <div key={index} className={`bg-white rounded-xl p-8 relative hover-scale ${plan.popular ? 'ring-2 ring-primary shadow-lg' : 'shadow-sm'}`}>
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-primary text-white px-4 py-1 rounded-full text-sm font-medium flex items-center gap-1">
-                    <Star className="h-3 w-3" />
-                    Most Popular
-                  </div>
-                </div>
-              )}
-              
-              <div className="text-center mb-6">
-                <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                <div className="text-3xl font-bold text-primary mb-2">{plan.price}</div>
-                <p className="text-muted-foreground">{plan.description}</p>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center gap-3">
-                    <Check className="h-4 w-4 text-green-600 flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
-                  </li>
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-gray-900 hover:bg-gray-900">
+                <TableHead className="text-white font-bold text-lg w-1/4">Plan</TableHead>
+                {plans.map((plan, index) => (
+                  <TableHead key={index} className="text-white text-center relative">
+                    {plan.popular && (
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <div className="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                          <Star className="h-3 w-3" />
+                          Most Popular
+                        </div>
+                      </div>
+                    )}
+                    <div className="font-bold text-lg">{plan.name}</div>
+                  </TableHead>
                 ))}
-              </ul>
+              </TableRow>
+              <TableRow className="bg-gray-800 hover:bg-gray-800">
+                <TableCell className="text-white font-bold text-lg">Price</TableCell>
+                {plans.map((plan, index) => (
+                  <TableCell key={index} className="text-white text-center font-bold text-xl">
+                    {plan.price}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {features.map((feature, featureIndex) => (
+                <TableRow key={featureIndex} className="border-b">
+                  <TableCell className="font-semibold bg-gray-50">{feature.name}</TableCell>
+                  {feature.values.map((value, valueIndex) => (
+                    <TableCell key={valueIndex} className="text-center">
+                      {typeof value === 'boolean' ? (
+                        value ? (
+                          <Check className="h-5 w-5 text-green-600 mx-auto" />
+                        ) : (
+                          <X className="h-5 w-5 text-red-500 mx-auto" />
+                        )
+                      ) : (
+                        <span className="font-medium">{value}</span>
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
 
-              <Button 
-                className="w-full" 
-                variant={plan.popular ? "default" : "outline"}
-                onClick={() => handleWaitlistSignup(plan.name)}
-              >
-                Join Waitlist
-              </Button>
-            </div>
+        <div className="grid md:grid-cols-3 gap-4 mb-12">
+          {plans.map((plan, index) => (
+            <Button 
+              key={index}
+              className="w-full py-6 text-lg" 
+              variant={plan.popular ? "default" : "outline"}
+              onClick={() => handleWaitlistSignup(plan.name)}
+            >
+              Join Waitlist - {plan.name}
+            </Button>
           ))}
         </div>
 
         <div className="bg-white rounded-xl p-8 max-w-md mx-auto text-center">
           <h3 className="text-xl font-bold mb-4">Join the Waitlist</h3>
           <p className="text-muted-foreground mb-6">
-            Be the first to know when FloorGuru launches. Early subscribers get 50% off their first consultation!
+            Be the first to know when FloorGuru launches. Early subscribers get 50% off their first month!
           </p>
           <div className="flex gap-3">
             <input
