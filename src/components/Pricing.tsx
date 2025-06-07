@@ -102,16 +102,16 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12 mt-8">
           <Table>
             <TableHeader>
               <TableRow className="bg-gray-900 hover:bg-gray-900">
-                <TableHead className="text-white font-bold text-lg w-1/4">Plan</TableHead>
+                <TableHead className="text-white font-bold text-lg w-1/4 py-6">Plan</TableHead>
                 {plans.map((plan, index) => (
-                  <TableHead key={index} className="text-white text-center relative">
+                  <TableHead key={index} className="text-white text-center relative py-6">
                     {plan.popular && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <div className="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                        <div className="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 whitespace-nowrap">
                           <Star className="h-3 w-3" />
                           Most Popular
                         </div>
