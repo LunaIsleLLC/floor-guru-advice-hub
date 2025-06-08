@@ -17,7 +17,7 @@ const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState("Plus"); // Default to Plus (most popular)
   const { toast } = useToast();
 
-  const handleWaitlistSignup = (plan: string) => {
+  const handleWaitlistSignup = async (plan: string) => {
     if (!email) {
       toast({
         title: "Email Required",
@@ -34,6 +34,36 @@ const Pricing = () => {
     
     console.log(`Waitlist signup for Early Access - ${plan} plan:`, email);
     setEmail("");
+  
+    try {
+      const response = await fetch("https://formspree.io/f/xvgrzerl", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          plan,
+        }),
+      });
+  
+      if (response.ok) {
+        toast({
+          title: "Welcome to the Waitlist!",
+          description: `Thanks for your interest in the ${plan} plan! We'll notify you when FloorGuru launches.`,
+        });
+        setEmail("");
+      } else {
+        throw new Error("Form submission failed.");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Could not submit your email. Please try again later.",
+        variant: "destructive"
+      });
+      console.error(error);
+    }
   };
 
   const handlePlanSelect = (planName: string) => {
