@@ -108,11 +108,11 @@ const Pricing = () => {
               <TableRow className="bg-gray-900 hover:bg-gray-900">
                 <TableHead className="text-white font-bold text-lg w-1/4 py-6">Plan</TableHead>
                 {plans.map((plan, index) => (
-                  <TableHead key={index} className="text-white text-center py-6">
+                  <TableHead key={index} className={`text-white text-center py-6 ${plan.popular ? 'bg-primary' : ''}`}>
                     <div className="font-bold text-lg flex items-center justify-center gap-2">
                       {plan.name}
                       {plan.popular && (
-                        <div className="bg-primary text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 whitespace-nowrap">
+                        <div className="bg-white text-primary px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 whitespace-nowrap">
                           <Star className="h-3 w-3" />
                           Most Popular
                         </div>
@@ -124,7 +124,7 @@ const Pricing = () => {
               <TableRow className="bg-gray-800 hover:bg-gray-800">
                 <TableCell className="text-white font-bold text-lg">Price</TableCell>
                 {plans.map((plan, index) => (
-                  <TableCell key={index} className="text-white text-center font-bold text-xl">
+                  <TableCell key={index} className={`text-white text-center font-bold text-xl ${plan.popular ? 'bg-primary/90' : ''}`}>
                     {plan.price}
                   </TableCell>
                 ))}
@@ -135,7 +135,7 @@ const Pricing = () => {
                 <TableRow key={featureIndex} className="border-b">
                   <TableCell className="font-semibold bg-gray-50">{feature.name}</TableCell>
                   {feature.values.map((value, valueIndex) => (
-                    <TableCell key={valueIndex} className="text-center">
+                    <TableCell key={valueIndex} className={`text-center ${plans[valueIndex].popular ? 'bg-primary/5' : ''}`}>
                       {typeof value === 'boolean' ? (
                         value ? (
                           <Check className="h-5 w-5 text-green-600 mx-auto" />
