@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Check, X, Star } from "lucide-react";
 import { useState } from "react";
@@ -14,6 +13,7 @@ import {
 
 const Pricing = () => {
   const [email, setEmail] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState("Plus"); // Default to Plus (most popular)
   const { toast } = useToast();
 
   const handleWaitlistSignup = (plan: string) => {
@@ -33,6 +33,10 @@ const Pricing = () => {
     
     console.log(`Waitlist signup for ${plan} plan:`, email);
     setEmail("");
+  };
+
+  const handlePlanSelect = (planName: string) => {
+    setSelectedPlan(planName);
   };
 
   const plans = [
@@ -92,6 +96,8 @@ const Pricing = () => {
     }
   ];
 
+  const isPlanSelected = (planName: string) => selectedPlan === planName;
+
   return (
     <section id="pricing" className="py-20 bg-gray-50">
       <div className="container mx-auto max-w-6xl px-6">
@@ -108,7 +114,13 @@ const Pricing = () => {
               <TableRow className="bg-gray-900 hover:bg-gray-900">
                 <TableHead className="text-white font-bold text-lg w-1/4 py-6">Plan</TableHead>
                 {plans.map((plan, index) => (
-                  <TableHead key={index} className={`text-white text-center py-6 ${plan.popular ? 'bg-primary' : ''}`}>
+                  <TableHead 
+                    key={index} 
+                    className={`text-white text-center py-6 cursor-pointer transition-colors ${
+                      plan.popular ? 'bg-primary' : isPlanSelected(plan.name) ? 'bg-primary/80' : ''
+                    }`}
+                    onClick={() => handlePlanSelect(plan.name)}
+                  >
                     <div className="font-bold text-lg flex items-center justify-center gap-2">
                       {plan.name}
                       {plan.popular && (
@@ -124,7 +136,13 @@ const Pricing = () => {
               <TableRow className="bg-gray-800 hover:bg-gray-800">
                 <TableCell className="text-white font-bold text-lg">Price</TableCell>
                 {plans.map((plan, index) => (
-                  <TableCell key={index} className={`text-white text-center font-bold text-xl ${plan.popular ? 'bg-primary/90' : ''}`}>
+                  <TableCell 
+                    key={index} 
+                    className={`text-white text-center font-bold text-xl cursor-pointer transition-colors ${
+                      plan.popular ? 'bg-primary/90' : isPlanSelected(plan.name) ? 'bg-primary/70' : ''
+                    }`}
+                    onClick={() => handlePlanSelect(plan.name)}
+                  >
                     {plan.price}
                   </TableCell>
                 ))}
@@ -135,7 +153,13 @@ const Pricing = () => {
                 <TableRow key={featureIndex} className="border-b">
                   <TableCell className="font-semibold bg-gray-50">{feature.name}</TableCell>
                   {feature.values.map((value, valueIndex) => (
-                    <TableCell key={valueIndex} className={`text-center ${plans[valueIndex].popular ? 'bg-primary/5' : ''}`}>
+                    <TableCell 
+                      key={valueIndex} 
+                      className={`text-center cursor-pointer transition-colors ${
+                        plans[valueIndex].popular ? 'bg-primary/5' : isPlanSelected(plans[valueIndex].name) ? 'bg-primary/10' : ''
+                      }`}
+                      onClick={() => handlePlanSelect(plans[valueIndex].name)}
+                    >
                       {typeof value === 'boolean' ? (
                         value ? (
                           <Check className="h-5 w-5 text-green-600 mx-auto" />
@@ -157,9 +181,14 @@ const Pricing = () => {
           {plans.map((plan, index) => (
             <Button 
               key={index}
-              className="w-full py-6 text-lg" 
-              variant={plan.popular ? "default" : "outline"}
-              onClick={() => handleWaitlistSignup(plan.name)}
+              className={`w-full py-6 text-lg transition-all ${
+                isPlanSelected(plan.name) ? 'ring-2 ring-primary ring-offset-2' : ''
+              }`}
+              variant={plan.popular || isPlanSelected(plan.name) ? "default" : "outline"}
+              onClick={() => {
+                handlePlanSelect(plan.name);
+                handleWaitlistSignup(plan.name);
+              }}
             >
               Join Waitlist - {plan.name}
             </Button>
@@ -179,10 +208,13 @@ const Pricing = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <Button onClick={() => handleWaitlistSignup("Early Access")}>
+            <Button onClick={() => handleWaitlistSignup(selectedPlan)}>
               Join Now
             </Button>
           </div>
+          <p className="text-sm text-muted-foreground mt-2">
+            Selected plan: <span className="font-semibold">{selectedPlan}</span>
+          </p>
         </div>
       </div>
     </section>
