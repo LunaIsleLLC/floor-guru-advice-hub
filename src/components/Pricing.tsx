@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Check, X, Star } from "lucide-react";
 import { useState } from "react";
@@ -28,10 +29,10 @@ const Pricing = () => {
     
     toast({
       title: "Welcome to the Waitlist!",
-      description: `Thanks for your interest in the ${plan} plan! We'll notify you when FloorGuru launches.`,
+      description: `Thanks for your interest in the Early Access - ${plan} plan! We'll notify you when FloorGuru launches.`,
     });
     
-    console.log(`Waitlist signup for ${plan} plan:`, email);
+    console.log(`Waitlist signup for Early Access - ${plan} plan:`, email);
     setEmail("");
   };
 
@@ -97,6 +98,7 @@ const Pricing = () => {
   ];
 
   const isPlanSelected = (planName: string) => selectedPlan === planName;
+  const isPlanPopularAndSelected = (plan: any) => plan.popular && isPlanSelected(plan.name);
 
   return (
     <section id="pricing" className="py-20 bg-gray-50">
@@ -117,7 +119,7 @@ const Pricing = () => {
                   <TableHead 
                     key={index} 
                     className={`text-white text-center py-6 cursor-pointer transition-colors ${
-                      plan.popular ? 'bg-primary' : isPlanSelected(plan.name) ? 'bg-primary/80' : ''
+                      isPlanPopularAndSelected(plan) || (!plan.popular && isPlanSelected(plan.name)) ? 'bg-primary' : ''
                     }`}
                     onClick={() => handlePlanSelect(plan.name)}
                   >
@@ -139,7 +141,7 @@ const Pricing = () => {
                   <TableCell 
                     key={index} 
                     className={`text-white text-center font-bold text-xl cursor-pointer transition-colors ${
-                      plan.popular ? 'bg-primary/90' : isPlanSelected(plan.name) ? 'bg-primary/70' : ''
+                      isPlanPopularAndSelected(plan) || (!plan.popular && isPlanSelected(plan.name)) ? 'bg-primary/90' : ''
                     }`}
                     onClick={() => handlePlanSelect(plan.name)}
                   >
@@ -156,7 +158,7 @@ const Pricing = () => {
                     <TableCell 
                       key={valueIndex} 
                       className={`text-center cursor-pointer transition-colors ${
-                        plans[valueIndex].popular ? 'bg-primary/5' : isPlanSelected(plans[valueIndex].name) ? 'bg-primary/10' : ''
+                        isPlanPopularAndSelected(plans[valueIndex]) || (!plans[valueIndex].popular && isPlanSelected(plans[valueIndex].name)) ? 'bg-primary/10' : ''
                       }`}
                       onClick={() => handlePlanSelect(plans[valueIndex].name)}
                     >
@@ -184,7 +186,7 @@ const Pricing = () => {
               className={`w-full py-6 text-lg transition-all ${
                 isPlanSelected(plan.name) ? 'ring-2 ring-primary ring-offset-2' : ''
               }`}
-              variant={plan.popular || isPlanSelected(plan.name) ? "default" : "outline"}
+              variant={isPlanPopularAndSelected(plan) || (!plan.popular && isPlanSelected(plan.name)) ? "default" : "outline"}
               onClick={() => {
                 handlePlanSelect(plan.name);
                 handleWaitlistSignup(plan.name);
@@ -213,7 +215,7 @@ const Pricing = () => {
             </Button>
           </div>
           <p className="text-sm text-muted-foreground mt-2">
-            Selected plan: <span className="font-semibold">{selectedPlan}</span>
+            Selected plan: <span className="font-semibold">Early Access - {selectedPlan}</span>
           </p>
         </div>
       </div>
